@@ -1,12 +1,12 @@
 import '../styles/globals.css'
 import type { AppContext, AppProps } from 'next/app'
-import ResponsiveAppBar from './components/header'
+import ResponsiveAppBar from '../components/header'
 import { Box, Button, CssBaseline } from '@mui/material'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import App from 'next/app'
-import Header from './components/header';
+import Header from '../components/header';
 import { Grid } from '@mui/material'
-import TwoColmnLayout from './components/twoColmn'
+import TwoColmnLayout from '../components/twoColmn'
 import React from 'react';
 import "easymde/dist/easymde.min.css";
 

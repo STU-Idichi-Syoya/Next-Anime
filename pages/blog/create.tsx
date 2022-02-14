@@ -1,9 +1,9 @@
 import React, { useState,useCallback, useEffect } from "react";
 import dynamic from "next/dynamic";
 import {DatetoString, markdownToHtml, markdownToPost, post} from '../../lib/markutil'
-import BlogDatailCard from "../components/blogDatail";
+import BlogDatailCard from "../../components/blogDatail";
 const SimpleMde = dynamic(() => import("react-simplemde-editor"), { ssr: false });
-import OneColmnLayout from '../components/oneColmn';
+import OneColmnLayout from '../../components/oneColmn';
 import { FormControlLabel, FormGroup, Switch, TextField } from "@mui/material";
 
 

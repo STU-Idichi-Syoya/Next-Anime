@@ -1,5 +1,5 @@
 import { NextPage } from "next"
-import BlogCard from "../components/blogCard"
+import BlogCard from "../../components/blogCard"
 import { getAllPosts, getPostBySlug } from "../../lib/api";
 
 
@@ -11,14 +11,14 @@ export const getStaticProps = async ({ params }:{params:any}) => {
 }
 
 
-const BLOGINDEX:NextPage =(props)=>{
+const BLOGINDEX:NextPage =(props:any)=>{
     // console.log(props.posts[0])
     return (
         <>
                 {
-                props.posts.map((c) => {
+                props.posts.map((c:any) => {
                     return (
-                        <BlogCard img={""} slug={c.slug} title={c.data.title} summary={c.data.description} ></BlogCard>
+                        <BlogCard key={c.slug} img={""} slug={c.slug} title={c.data.title} summary={c.data.description} ></BlogCard>
                     )
                 }
             )}

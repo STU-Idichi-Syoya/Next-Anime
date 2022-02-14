@@ -1,5 +1,5 @@
 import { NextPage } from "next"
-import BlogCard from "../../components/blogCard"
+import BlogCard from "../../../components/blogCard"
 import { getAllPostTag, getPostsByTag } from "../../../lib/api";
 
 
@@ -31,7 +31,7 @@ const BLOGINDEX:NextPage =(props:any)=>{
                 {
                 props.posts.map((c:any) => {
                     return (
-                        <BlogCard img={""} slug={c.slug} title={c.data.title} summary={c.data.description} ></BlogCard>
+                        <BlogCard key={c.slug} img={""} slug={c.slug} title={c.data.title} summary={c.data.description} ></BlogCard>
                     )
                 }
             )}

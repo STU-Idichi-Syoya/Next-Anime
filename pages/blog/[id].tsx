@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { getAllPosts, getPostBySlug} from "../../lib/api";
 import { post } from "../../lib/markutil";
-import BlogDatailCard from "../components/blogDatail";
+import BlogDatailCard from "../../components/blogDatail";
 
 // //どんなpathがあるか
 export const getStaticPaths = async () => {
@@ -24,7 +24,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }:{params:any}) => {
     // const posts=getAllPosts();
-    console.log(params.id)
+    // console.log(params.id)
     const post=await getPostBySlug(params.id)
     // console.log(post);
     return {props: {post:post}}
@@ -34,7 +34,7 @@ export const getStaticProps = async ({ params }:{params:any}) => {
 
 export default function BlogDatail(props: { post: post; }) {
   // const router = useRouter();
-  console.log(props);
+//   console.log(props);
   return (<>
       <BlogDatailCard title={props.post.data.title} html={props.post.content_html} tags={props.post.data.tags} date={props.post.data.date} author={props.post.data.author}/>
   </>);

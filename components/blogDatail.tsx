@@ -7,7 +7,7 @@ import Avatar from '@mui/material/Avatar';
 import useSWR from "swr";
 import { useEffect, useState } from "react";
 import { deepOrange, deepPurple, blueGrey } from '@mui/material/colors';
-import { Tag } from '../../lib/markutil'
+import { Tag } from '../lib/markutil'
 // import style from './blogDetail.module.css'
 // import '../../styles/github.code.style.module.css'
 type BlogDatailProps = {
