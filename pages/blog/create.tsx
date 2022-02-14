@@ -1,7 +1,6 @@
 import React, { useState,useCallback, useEffect } from "react";
 import dynamic from "next/dynamic";
 import {DatetoString, markdownToHtml, markdownToPost, post} from '../../lib/markutil'
-import BlogDatail from "./[id]";
 import BlogDatailCard from "../components/blogDatail";
 const SimpleMde = dynamic(() => import("react-simplemde-editor"), { ssr: false });
 import OneColmnLayout from '../components/oneColmn';
@@ -87,7 +86,7 @@ const MarkdownEditor = () => {
 
       <FormGroup>
          <FormControlLabel control={<Switch defaultChecked onChange={(e)=>{setDraft(!isDraft)}}/>} label="下書き(公開しない)" />
-         <FormControlLabel control={<Switch defaultChecked onChange={(e)=>{setPreview(e.target.value)}} />} label="プレビューを表示" />
+         <FormControlLabel control={<Switch defaultChecked onChange={(e)=>{setPreview(e.target.value=='true')}} />} label="プレビューを表示" />
       </FormGroup>
       </div>
       <div style={{display:'flex',flexDirection:'row'}}>
@@ -99,7 +98,7 @@ const MarkdownEditor = () => {
        {isPreview?
        <div style={{minWidth: '50%',minHeight:'50%'}}>
          <p>Preview</p>
-         <BlogDatailCard title={title} html={html} tags={tags} date={DatetoString(date)}/>
+         <BlogDatailCard title={title} html={html} tags={tags.map(t => { return { displyTagName: t, tagLinkName: t.toLowerCase() }; })} date={DatetoString(date)} author={author}/>
        </div>
        :<></>}
       </div> 

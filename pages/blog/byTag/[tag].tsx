@@ -24,12 +24,12 @@ export const getStaticPaths = async () => {
     return { paths:paths, fallback: false };
 }
 
-const BLOGINDEX:NextPage =(props)=>{
+const BLOGINDEX:NextPage =(props:any)=>{
     // console.log(props.posts[0])
     return (
         <>
                 {
-                props.posts.map((c) => {
+                props.posts.map((c:any) => {
                     return (
                         <BlogCard img={""} slug={c.slug} title={c.data.title} summary={c.data.description} ></BlogCard>
                     )

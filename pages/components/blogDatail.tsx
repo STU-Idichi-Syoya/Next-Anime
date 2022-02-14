@@ -7,13 +7,13 @@ import Avatar from '@mui/material/Avatar';
 import useSWR from "swr";
 import { useEffect, useState } from "react";
 import { deepOrange, deepPurple, blueGrey } from '@mui/material/colors';
-import { tag } from '../../lib/markutil'
+import { Tag } from '../../lib/markutil'
 // import style from './blogDetail.module.css'
 // import '../../styles/github.code.style.module.css'
 type BlogDatailProps = {
     title: string;
     html: string;
-    tags: tag[];
+    tags: Tag[];
     date: string;
     author: string;
 };
@@ -92,12 +92,12 @@ export default function BlogDatailCard({ title, html, tags, date, author }: Blog
                     <h1>{title}</h1>
                     <time>投稿日:{date}</time>
                     <div style={{ display: 'flex', flexDirection: 'row', marginTop: '10px' }}>
-                        {tags.map((t: tag) => {
+                        {tags.map((t: Tag) => {
                             return (
                                 <>
                                     {console.log(t)}
                                     <TagIcon />
-                                    <div key={t.displayTagName} style={{ marginRight: '30px' }}> <Link href={'/blog/byTag/' + t.tagLinkName}><a>{t.displyTagName}</a></Link></div>
+                                    <div key={t.displyTagName} style={{ marginRight: '30px' }}> <Link href={'/blog/byTag/' + t.tagLinkName}><a>{t.displyTagName}</a></Link></div>
                                 </>
                             );
                         })}
