@@ -1,28 +1,38 @@
 import '../styles/globals.css'
 import type { AppContext, AppProps } from 'next/app'
 import ResponsiveAppBar from './components/header'
-import { Box } from '@mui/material'
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { withWidth } from '@material-ui/core';
+import { Box, Button, CssBaseline } from '@mui/material'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import App from 'next/app'
+import Header from './components/header';
+import { Grid } from '@mui/material'
+import TwoColmnLayout from './components/twoColmn'
+import React from 'react';
+import "easymde/dist/easymde.min.css";
+
+// import 'modern-css-reset/dist/reset.min.css'
 
 
 const theme = createTheme({
   palette: {
-    primary: {
-      main: '#000000',
-    }
-  }
+    mode: 'light',
+    primary:{
+      main: '#3E8735',
+    },
+  },
 });
 
-const MyApp=({ Component, pageProps }: AppProps) =>{
+
+const MyApp=({ Component, pageProps }: any) =>{
+  // デフォルトは2カラムレイアウトにする．
+  const getLayout= Component.getLayout || ((page: any)=>TwoColmnLayout(page));
   return (
     <>
       <ThemeProvider theme={theme}>
-      <ResponsiveAppBar />
-      <Box sx={{ display: 'flex', marginTop: '10px',padding:'30px'}} justifyContent={"space-between"} style={{width:'100%'}}>
-            <Component {...pageProps} />
-        </Box>
+      <CssBaseline />
+      <Header/>
+      <div style={{marginTop:'5%'}}/>
+      {getLayout({Component,pageProps})}
       </ThemeProvider>
     </>
   )

@@ -12,11 +12,16 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Link from 'next/link';
+import GroupsIcon from '@mui/icons-material/Groups';
+import FunctionsIcon from '@mui/icons-material/Functions';
+import ArticleIcon from '@mui/icons-material/Article';
 
-const pages = [{name:'今期のおすすめ',Link:'/anime/recommend'}, {name:'過去作のおすすめ',Link:'/anime/past_recommend'}, {name:'マニアック',Link:'/anime/maniac'}];
+const pages = [{name:'研究室紹介',Link:'/introduction',icon:GroupsIcon}, {name:'画像処理',Link:'/tech',icon:FunctionsIcon}, {name:'BLOG',Link:'/blog',icon:ArticleIcon}];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const logo_path='/iplab-logo.png';
+const logo_width=50;
 
-const ResponsiveAppBar = () => {
+const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -36,19 +41,21 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed" color='primary' sx={{height:'8%'}} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
             component="div"
+            flexDirection={'column'}
+            align='center'
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            <Link href="/">
-                <a>
-                <img src='/logo.svg' width={80} height={"auto"}/>
-                </a>
+            <Link href="/" >
+                <div style={{textAlign:'center',display:'inline-block',}}>
+                <img src={logo_path} width={logo_width} height={"auto"}/>
+                </div>
             </Link>
             {/* GOAnime!! */}
           </Typography>
@@ -84,7 +91,7 @@ const ResponsiveAppBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <Link href={page.Link}><a><Typography textAlign="center">{page.name}</Typography></a></Link>
+                  <Link href={page.Link}><a><Button startIcon={<page.icon/>}>{page.name}</Button></a></Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -98,22 +105,27 @@ const ResponsiveAppBar = () => {
                         <Link href="/">
                 <a>
                 <img width={
-                      100} height={48} src="/logo.svg"></img>
+                      logo_width} height={'auto'} src={logo_path}></img>
                 </a>
             </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            
             {pages.map((page) => (
+              <div style={{marginLeft:10}} key={page.name}>
               <Link href={page.Link} key={page.name}>
                 <a>
               <Button
                 key={page.name}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                startIcon={<page.icon/>}
+                sx={{ color: 'white', }}
+                variant="outlined"
               >
                 {page.name}
               </Button>
               </a></Link>
+              </div>
             ))}
           </Box>
 
@@ -151,4 +163,4 @@ const ResponsiveAppBar = () => {
     </AppBar>
   );
 };
-export default ResponsiveAppBar;
+export default Header;
