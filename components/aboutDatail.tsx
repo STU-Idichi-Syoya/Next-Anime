@@ -1,14 +1,7 @@
 import { createTheme } from "@mui/material";
 import TagIcon from '@mui/icons-material/Tag';
-import Link from 'next/link';
 import 'highlight.js/styles/default.css';
 import Head from 'next/head'
-import Avatar from '@mui/material/Avatar';
-import useSWR from "swr";
-import { useEffect, useState } from "react";
-import { deepOrange, deepPurple, blueGrey } from '@mui/material/colors';
-import { Tag } from '../lib/markutil'
-import Script from 'next/Script'
 import {Box} from '@mui/material'
 
 // import style from './blogDetail.module.css'
