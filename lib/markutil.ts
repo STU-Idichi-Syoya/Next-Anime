@@ -20,6 +20,7 @@ export type postMetaData={
     description:string,
     title:string,
     tags:Tag[],
+    img:string,
 }
 
 export const postMetadataDefaultValue:postMetaData={
@@ -28,6 +29,7 @@ export const postMetadataDefaultValue:postMetaData={
     date:new Date().toString(),
     description:'no explanation',
     title:'no title',
+    img:'',
     tags:[{
         displyTagName:'no_tag',
         tagLinkName:'no_tag',
@@ -59,7 +61,9 @@ export const markdownToHtml = async (markdown: string) :Promise<string> => {
       .use(rehypeHighlight,{ignoreMissing:true})
       .use(rehypeStringify,{allowDangerousHtml:true})
       .process(markdown);
-    return result.toString();
+      const ret=result.toString();
+      // ret.replace(/<iframe +width=([\S])+/ >)
+    return ret
   };
 
   const typeToString=(s:any):string=>{

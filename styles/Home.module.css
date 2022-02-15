@@ -114,3 +114,7 @@
     flex-direction: column;
   }
 }
+
+.searchTitle{
+  margin: 0;
+}

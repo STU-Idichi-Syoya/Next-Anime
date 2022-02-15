@@ -17,3 +17,9 @@ export const rangeSeson=(start_year:number,stop_year:number)=>{
     }
     return ret;
 }
+
+export const string2Hash=(str:string)=>{
+    return( Array.from(str).reduce((hash,char)=>{
+        return hash+char.charCodeAt(0);
+    },0));
+}

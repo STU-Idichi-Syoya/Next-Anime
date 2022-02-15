@@ -968,3 +968,7 @@
     width: 100%;
     display:table;
   }
+
+  .markdown-body iframe{
+    width: 100%;
+  }

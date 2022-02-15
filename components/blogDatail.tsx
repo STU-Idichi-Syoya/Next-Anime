@@ -90,7 +90,7 @@ export default function BlogDatailCard({ title, html, tags, date, author }: Blog
                 <link href="/github.code.style.module.css" rel="stylesheet" />
             </Head>
 
-            <Box sx={{ backgroundColor: 'white', paddingLeft:{xs:'10px',md:'30px'},paddingRight:{xs:'10px',md:'30px'},paddingTop:'5px',paddingBottom:'10px' }}>
+            <Box sx={{ backgroundColor: 'white', paddingLeft:{xs:'10px',md:'30px'},paddingRight:{xs:'10px',md:'30px'},paddingBottom:'10px' }}>
                 <div style={{ marginBottom: '3%' }}>
                     <h1>{title}</h1>
                     <time>投稿日:{date}</time>
@@ -115,7 +115,7 @@ export default function BlogDatailCard({ title, html, tags, date, author }: Blog
                         </a>
                     </div>
                 </div>
-                <article className='markdown-body' dangerouslySetInnerHTML={{ __html: html+injs }} />
+                <article className='markdown-body' dangerouslySetInnerHTML={{ __html: html }} />
 
                 {/* {!IsIncludeScript ?
                     <article className='markdown-body' dangerouslySetInnerHTML={{ __html: html }} />
@@ -128,7 +128,3 @@ export default function BlogDatailCard({ title, html, tags, date, author }: Blog
             </>
     )
 }
-const injs='<script>\
-document.querySelector(\'markdown-body iframe\')?.map(e => {e.width=\'100%\'})\
-</script>'
-

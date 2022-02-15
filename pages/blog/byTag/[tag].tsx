@@ -1,5 +1,6 @@
 import { NextPage } from "next"
 import BlogCard from "../../../components/blogCard"
+import { SearchPage } from "../../../components/searchPage";
 import { getAllPostTag, getPostsByTag } from "../../../lib/api";
 
 
@@ -8,7 +9,7 @@ export const getStaticProps = async ({ params }:{params:any}) => {
     const posts=await getPostsByTag(params.tag);
     // const post=getPostBySlug('test')
     // console.log(post);
-    return {props: {posts:posts}}
+    return {props: {posts:posts,tag:params.tag}}
 }
 
 // //どんなpathがあるか
@@ -28,13 +29,7 @@ const BLOGINDEX:NextPage =(props:any)=>{
     // console.log(props.posts[0])
     return (
         <>
-                {
-                props.posts.map((c:any) => {
-                    return (
-                        <BlogCard key={c.slug} img={""} slug={c.slug} title={c.data.title} summary={c.data.description} ></BlogCard>
-                    )
-                }
-            )}
+              <SearchPage searchWord={props.tag} posts={props.posts}></SearchPage>
         </>
     )
 }

@@ -106,7 +106,7 @@ const Header = () => {
                         <Link href="/">
                 <a>
                 <img width={
-                      logo_width} height={'auto'} src={logo_path}></img>
+                      logo_width} height={logo_width} src={logo_path}></img>
                 </a>
             </Link>
           </Typography>
@@ -162,7 +162,7 @@ const Header = () => {
         </Toolbar>
       </Container>
     </AppBar>
-    <div styles={{marginBottom:'58px'}}></div>
+    <div style={{marginBottom:'58px'}}></div>
     </>
   );
 };

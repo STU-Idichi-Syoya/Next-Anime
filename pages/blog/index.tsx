@@ -1,5 +1,5 @@
 import { NextPage } from "next"
-import BlogCard from "../../components/blogCard"
+import { SearchPage } from "../../components/searchPage";
 import { getAllPosts, getPostBySlug } from "../../lib/api";
 
 
@@ -16,14 +16,7 @@ const BLOGINDEX:NextPage =(props:any)=>{
 
     return (
         <>
-            <h1>最近の投稿</h1>
-                {
-                props.posts.map((c:any) => {
-                    return (
-                        <BlogCard key={c.slug} img={""} slug={c.slug} title={c.data.title} summary={c.data.description} ></BlogCard>
-                    )
-                }
-            )}
+            <SearchPage searchWord={"最近の投稿"} posts={props.posts} ></SearchPage>
         </>
     )
 }
