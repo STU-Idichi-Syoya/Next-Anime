@@ -8,6 +8,9 @@ import useSWR from "swr";
 import { useEffect, useState } from "react";
 import { deepOrange, deepPurple, blueGrey } from '@mui/material/colors';
 import { Tag } from '../lib/markutil'
+import Script from 'next/Script'
+import {Box} from '@mui/material'
+
 // import style from './blogDetail.module.css'
 // import '../../styles/github.code.style.module.css'
 type BlogDatailProps = {
@@ -87,7 +90,7 @@ export default function BlogDatailCard({ title, html, tags, date, author }: Blog
                 <link href="/github.code.style.module.css" rel="stylesheet" />
             </Head>
 
-            <div style={{ backgroundColor: 'white', paddingLeft:'30px',paddingRight:'30px',paddingTop:'5px',paddingBottom:'10px' }}>
+            <Box sx={{ backgroundColor: 'white', paddingLeft:{xs:'10px',md:'30px'},paddingRight:{xs:'10px',md:'30px'},paddingTop:'5px',paddingBottom:'10px' }}>
                 <div style={{ marginBottom: '3%' }}>
                     <h1>{title}</h1>
                     <time>投稿日:{date}</time>
@@ -112,7 +115,7 @@ export default function BlogDatailCard({ title, html, tags, date, author }: Blog
                         </a>
                     </div>
                 </div>
-                <article className='markdown-body' dangerouslySetInnerHTML={{ __html: html }} />
+                <article className='markdown-body' dangerouslySetInnerHTML={{ __html: html+injs }} />
 
                 {/* {!IsIncludeScript ?
                     <article className='markdown-body' dangerouslySetInnerHTML={{ __html: html }} />
@@ -120,7 +123,12 @@ export default function BlogDatailCard({ title, html, tags, date, author }: Blog
                         <article className='markdown-body' dangerouslySetInnerHTML={{ __html: html }} />
                         : <div>表示できません</div>
                 } */}
-            </div></>
+            </Box>
+            
+            </>
     )
 }
+const injs='<script>\
+document.querySelector(\'markdown-body iframe\')?.map(e => {e.width=\'100%\'})\
+</script>'
 

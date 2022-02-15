@@ -11,6 +11,8 @@ import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 import matter from 'gray-matter';
 
+// import {myRehypePlugin} from './custommark';
+
 export type postMetaData={
     author:string,
     categories:string[],
@@ -53,6 +55,7 @@ export const markdownToHtml = async (markdown: string) :Promise<string> => {
     //   .use(remarkImages)
     //   .use(remarkCodeTitles)
       .use(remarkRehype,{allowDangerousHtml:true})
+      // .use(myRehypePlugin)
       .use(rehypeHighlight,{ignoreMissing:true})
       .use(rehypeStringify,{allowDangerousHtml:true})
       .process(markdown);
@@ -68,7 +71,7 @@ export const markdownToHtml = async (markdown: string) :Promise<string> => {
     const data=await markdownToHtml(matterResult.content)
 
     if(typeof(matterResult.data?.tags)==='string'){
-      console.log('tags is string')
+      // console.log('tags is string')
       matterResult.data.tags=matterResult.data.tags.split(' ').map(t=>{
             return {
                 displyTagName:t,
@@ -78,9 +81,9 @@ export const markdownToHtml = async (markdown: string) :Promise<string> => {
     }
     // }else if(!!matterResult.data?.tags &&  matterResult.data.tags== && !('displyTagName' in matterResult.data.tags) && !('tagLinkName' in matterResult.data.tags)){  
     else{  
-      console.log('tags is array')
-      console.log(typeof(matterResult.data.tags))
-      console.log(matterResult.data.tags)
+      // console.log('tags is array')
+      // console.log(typeof(matterResult.data.tags))
+      // console.log(matterResult.data.tags)
       // 配列である場合
       let tags:Tag[]=[];
       for(const t of matterResult.data.tags){
@@ -131,3 +134,103 @@ export const markdownToHtml = async (markdown: string) :Promise<string> => {
   export const DatetoString=(d:Date):string=>{
     return `${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()}`
   }
+
+
+  // pluginの作り方は
+//https://github.com/azyobuzin/blog/blob/7913138eff88596512ec8403c17005bba57beb31/generator/lib/posts.ts#L20
+// を参照
+
+// import type { VFile } from "vfile"
+// import { SKIP, visit } from "unist-util-visit"
+// import { FrozenProcessor, Plugin, unified } from "unified"
+// import { isElement as isHastElement } from "hast-util-is-element"
+// import type {
+//     Element,
+//     Node as HastNode,
+//     Root as HastRoot,
+//     Text as HastText,
+//   } from "hast"
+
+// 
+
+// export const test: Plugin<[], HastRoot> = () => {
+//     return (tree: HastRoot,vfile,done) => {
+//       visit(tree, (node) => {
+//         // console.log(node);
+//         if(node.type==='element'){
+//             console.log('element?');
+//             console.log(!!node.children?.length);
+//             if(!!!node.children?.length||node?.visited_test){return SKIP}
+//             for(let i=0;i<node.children.length;i++){
+//                 let e = node.children[i]
+//                 if(e.type==='element'&&e.tagName==='iframe'){
+//                     console.log('found iframe');
+//                     delete e.properties?.width
+//                     delete e.properties?.height
+
+//                     let iframeWrapper:Element={
+//                         type:'element',
+//                         tagName:'div',
+//                         properties:{className:['iframe-wrapper']},
+//                         children:[e],
+//                     }
+//                     node.children[i]=iframeWrapper
+//                     console.log('replace iframe to div');
+//                 }
+//             }
+//             node.visited_test=true
+//         }
+//         return true;
+//         // for(const child of node.data)
+//     })
+// }
+//     done();
+// }
+
+// node, vfile, done を受け取る関数を返す
+// export function myRehypePlugin() {
+//     return function (node, vfile, done) {
+//       try {
+//         visit(convertCode, node, null, 0);
+//         done();
+//       } catch (err) {
+//         done(err);
+//       }
+//     };
+//   }
+  
+//   // hastの要素を訪問する関数
+//   function visit(visitor, node, parentNode, index) {
+//     if (visitor(node, parentNode, index)) {
+//       return;
+//     }
+  
+//     if (!node.children) {
+//       return;
+//     }
+  
+//     for (let i = 0; i < node.children.length; i++) {
+//       visit(visitor, node.children[i], node, i);
+//     }
+//   }
+
+//   function convertCode(node) {
+//     // syntaxhighlighter のコードだけをいじるという強い意思
+//     if (
+//       node.type === "element" &&
+//       node.tagName === "iframe"
+//     ) {
+//       return convertIframe2responsive(node);
+//     }
+//     return false;
+//   }
+  
+//   function convertIframe2responsive(node) {
+//     console.log('found iframe');
+//     delete node.properties.width  ;
+//     delete node.properties.height  ;
+//     node.children=[{...node}]
+//     node.TagName = "div";
+//     node.properties = {className:["iframe-wrapper"]};
+//     return true;
+//   }

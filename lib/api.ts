@@ -1,9 +1,9 @@
 import fs from 'fs';
-import matter from 'gray-matter';
 import path from 'path';
 import { markdownToPost, post, postMetaData, postMetadataDefaultValue } from './markutil';
 import {Semaphore} from 'await-semaphore';
 const postsDirectory = path.join(process.cwd(), 'contents')
+const aboutDirectory = path.join(process.cwd(), 'about')
 let files: string[] | null=null;
 let posts:post[]|null=null;
 let postsBySlug:Map<string,post>=new Map();
@@ -104,6 +104,11 @@ export async function getAllPostTag(){
     return tags
 }
 
-function markdownToHtml(content: string) {
-    throw new Error('Function not implemented.');
+// function markdownToHtml(content: string) {
+//     throw new Error('Function not implemented.');
+// }
+
+export function getAboutContent() {
+    const fileContent= fs.readFileSync(aboutDirectory+'/about.md', 'utf8');
+    return markdownToPost('about',fileContent); ;
 }

@@ -41,7 +41,8 @@ const Header = () => {
   };
 
   return (
-    <AppBar position="fixed" color='primary' sx={{height:'8%'}} >
+    <>
+        <AppBar position="fixed" color='primary' sx={{height:'58px'}} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -161,6 +162,8 @@ const Header = () => {
         </Toolbar>
       </Container>
     </AppBar>
+    <div styles={{marginBottom:'58px'}}></div>
+    </>
   );
 };
 export default Header;

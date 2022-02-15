@@ -13,8 +13,10 @@ export const getStaticProps = async ({ params }:{params:any}) => {
 
 const BLOGINDEX:NextPage =(props:any)=>{
     // console.log(props.posts[0])
+
     return (
         <>
+            <h1>最近の投稿</h1>
                 {
                 props.posts.map((c:any) => {
                     return (

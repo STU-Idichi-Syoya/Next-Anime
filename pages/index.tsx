@@ -27,3 +27,4 @@ const BLOGINDEX:NextPage =(props:any)=>{
 }
 
 export default  BLOGINDEX;
+// BLOGINDEX.

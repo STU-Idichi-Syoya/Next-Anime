@@ -1,7 +1,7 @@
 ---
 title: Markdown記法 チートシート
 tags: Qiita Markdown
-author: Qiita
+author: github:jinno-oit
 slide: false  
 date: 2020-01-19T21:16:05+09:00
 ---  
