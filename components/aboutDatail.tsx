@@ -1,5 +1,3 @@
-import { createTheme } from "@mui/material";
-import TagIcon from '@mui/icons-material/Tag';
 import 'highlight.js/styles/default.css';
 import Head from 'next/head'
 import {Box} from '@mui/material'
